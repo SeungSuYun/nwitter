@@ -1,8 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider ,signInWithPopup } from "firebase/auth";
+import { authService } from "fbase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider ,signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 
 const Auth = () => {
-    const authService = getAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [NewAccount, setNewAccount] = useState(true);

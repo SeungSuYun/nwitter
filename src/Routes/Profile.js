@@ -1,14 +1,28 @@
-import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { authService, dbService } from "fbase";
+import { getDocs, query, collection, where, orderBy } from "firebase/firestore";
+import { useEffect } from "react";
 
-const Profile = () => {
-    const authService = getAuth();
+const Profile = ({ userObj }) => {
     const navigate = useNavigate();
 
     const onLogOutClick = () => {
         authService.signOut();
         navigate('/');
     };
+
+    const getMyNweet = async () => {
+        const q = query(collection(dbService, "nweets"),
+            where("creatorId", "==", userObj.uid), orderBy("nweets", "desc"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data())
+        })
+    }
+
+    useEffect(() => {
+        getMyNweet();
+    }, [])
 
     return (
         <>

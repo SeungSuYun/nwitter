@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import Footer from 'Components/Footer';
-import AppRouter from "Components/Router";
+import { authService } from 'fbase';
+import { onAuthStateChanged } from 'firebase/auth';
+import Footer from 'components/Footer';
+import AppRouter from "components/Router";
 
 function App() {
-  const authService = getAuth();
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
     onAuthStateChanged(authService, (user) => {
-      if(user) {
-        setUserObj(user);
-      }
+      user ? setUserObj(user) : setUserObj(null);
       setInit(true);
     });
   }, []);
   return (
     <>
-    {init ? < AppRouter isLoggedIn={userObj} userObj={userObj} /> : "Initializing..."}
-    <Footer />
+      {init ? < AppRouter isLoggedIn={userObj} userObj={userObj} /> : "Initializing..."}
+      <Footer />
     </>
   );
 }
