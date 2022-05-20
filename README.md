@@ -1,4 +1,5 @@
 # Nwitter
+Twitter (mini)clone with React and Firebase
 
 ## patch scheduled
 
