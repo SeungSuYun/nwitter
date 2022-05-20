@@ -5,6 +5,7 @@ Twitter (mini)clone with React and Firebase
 
 1. Add Profile Image
 2. Add an image to each Nweet
+3. css clean code (styled-components)
 
 ## Bug Fix scheduled
 
